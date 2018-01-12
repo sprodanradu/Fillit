@@ -28,14 +28,17 @@ void	ft_scrie(char **patrat, int y, int x, t_etris *tetris)
 {
 	int loc_x;
 	int loc_y;
+	int ini;
 
 	loc_y = 0;
+	ini = x;
 	while (loc_y < tetris->latime1)
 	{
 		loc_x = 0;
+		x = ini;
 		while (loc_x < tetris->lungime1)
 		{
-			if (ft_isalpha(tetris->piesa[loc_y][loc_x]))
+			if (!(tetris->piesa[loc_y][loc_x] == '.'))
 				patrat[y][x] = tetris->piesa[loc_y][loc_x];
 			x++;
 			loc_x++;
@@ -49,18 +52,21 @@ int		ft_verifica_spot(char **patrat, int posini_y, int posini_x, t_etris *struct
 {
 	int		x;
 	int		y;
+	int		ini;
+	
 	y = 0;
 	if ((structura->lat - posini_x - structura->lungime1) < 0)
 		return (0);
 	if ((structura->lat - posini_y - structura->latime1) < 0)
 		return (0);
+	ini = posini_x;
 	while (y < structura->latime1)
 	{
 		x = 0;
+		psini_x = ini;
 		while (x < structura->lungime1)
 		{
-			if ((structura->piesa[y][x] == '.' && ft_isalpha(patrat[posini_y][posini_x])) 
-				|| (ft_isalpha(structura->piesa[y][x]) && patrat[posini_y][posini_x] == '.'))
+			if (structura->piesa[y][x] == '.' || patrat[posini_y][posini_x] == '.')
 				{
 					x++;
 					posini_x++;
