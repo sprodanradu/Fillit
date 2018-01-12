@@ -1,5 +1,14 @@
 #include "fillit.h"
 
+void	ft_punct(char *str)
+{
+	while (str)
+	{
+		*str = '.';
+		str++;
+	}
+}
+
 char	**ft_matrixalloc(int size1, int size2)
 {
 	int		i;
@@ -12,6 +21,7 @@ char	**ft_matrixalloc(int size1, int size2)
 	{
 		if (!(lat_y[i] = (char*)malloc(sizeof(char) * size2)))
 			return (NULL);
+		ft_punct(lat_y[i]);
 		i++;
 	}
 	return (lat_y);
@@ -21,12 +31,10 @@ int		main(int argc, char **argv)
 {
 	char	*read;
 	int 	nb_pieces;
-	int 	i;
 	t_etris	**finalvector; 
 	int 	latura_minim;
 	char	**patrat;
-
-	i = 0;     
+ 
 	if (argc != 2) 
 		ft_error("usage: fillit input_file\n"); // USAGE 
 	read = ft_openread(argv[1]);
@@ -35,7 +43,7 @@ int		main(int argc, char **argv)
 	finalvector = ft_vector_struct(nb_pieces,read);
 	free(read);
 	patrat = ft_matrixalloc(latura_minim,latura_minim);
-	while(!(ft_backtrack(finalvector,patrat,latura_minim,i)))
+	while(!(ft_backtrack(finalvector,patrat,latura_minim,0)))
 	{
 		latura_minim++;
 		ft_freematrix(patrat,latura_minim);

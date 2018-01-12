@@ -17,7 +17,8 @@ typedef	struct    	s_size
 
 void    ft_dimens(t_etris *s);
 char	*ft_movepiece(char *str);
-
+void	ft_error(char *str);
+int		ft_backtrack(t_etris **matrice, char **patrat, int latura, int i);
 void	ft_check(char *str, int *nb_pieces);
 char	*ft_openread(char *argv);
 

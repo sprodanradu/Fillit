@@ -59,8 +59,8 @@ int		ft_verifica_spot(char **patrat, int posini_y, int posini_x, t_etris *struct
 		x = 0;
 		while (x < structura->lungime1)
 		{
-			if ((structura->piesa[y][x] == '.' && ft_isalpha(patrat[posini_y][posini_x]) 
-				|| (ft_isalpha(structura->piesa[y][x]) && patrat[posini_y][posini_x] == '.')))
+			if ((structura->piesa[y][x] == '.' && ft_isalpha(patrat[posini_y][posini_x])) 
+				|| (ft_isalpha(structura->piesa[y][x]) && patrat[posini_y][posini_x] == '.'))
 				{
 					x++;
 					posini_x++;
@@ -74,14 +74,14 @@ int		ft_verifica_spot(char **patrat, int posini_y, int posini_x, t_etris *struct
 	return (1);
 }
 
-void	ft_backtrack(t_etris **matrice, char **patrat, int latura, int i)
+int	ft_backtrack(t_etris **matrice, char **patrat, int latura, int i)
 {
 	int 	x;
 	int 	y;
 	t_etris	*piesa;
 
 	if (matrice[i] == NULL)
-		return (patrat);
+		return (1);
 	matrice[i]->lat = latura;
 	piesa = matrice[i];
 	y = 0;

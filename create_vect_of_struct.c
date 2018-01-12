@@ -70,6 +70,6 @@ t_etris		**ft_vector_struct(int nr_piese, char *str)
 		piece_nb++;
 		x+=21;
 	}
-	vector[piece] = NULL;
+	vector[piece_nb] = NULL;
 	return(vector);
 }

@@ -85,7 +85,7 @@ void	ft_check(char *str, int *nb_pieces)
 	if (pieces == (len / 21 + 1))
 	{
 		j = 1;
-		ft_rules(str + i, j);
+		ft_rules(str + i, j); // str + 20 ??
 	}
 	*nb_pieces = pieces;
 	printf("pieces = %d\n", pieces);
@@ -105,5 +105,5 @@ char	*ft_openread(char *argv)
 	if (ft_strlen(tmp) > 545)  // error?? ??? ????
 		ft_error("mai mult de 545 de caractere // > 26 piese");
 	close(fd);
-	return (ft_strdup(tmp));
+	return (ft_strdup(tmp)); //sters strdup
 }
