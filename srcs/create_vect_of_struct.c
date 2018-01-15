@@ -6,31 +6,45 @@
 /*   By: sprodan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 19:50:11 by sprodan-          #+#    #+#             */
-/*   Updated: 2018/01/12 20:10:17 by sprodan-         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:21:49 by sprodan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_etris		*ft_create_struct(int piece_nb, char *str)
+void		fuck_the_normes(t_etris *tetris, int piece_nb, int y)
 {
-	int		j;
+	int x;
+
+	while (y < 4)
+	{
+		x = 0;
+		while (x < 4)
+		{
+			if (tetris->piesa[y][x] == '#')
+				tetris->piesa[y][x] = 65 + piece_nb;
+			x++;
+		}
+		y++;
+	}
+	ft_dimens(tetris);
+	tetris->nb = piece_nb;
+}
+
+t_etris		*ft_create_struct(int piece_nb, char *str, int j)
+{
 	int		x;
 	int		y;
 	t_etris	*tetris;
 
 	y = 0;
 	x = 0;
-	j = 0;
 	tetris = (t_etris*)malloc(sizeof(t_etris));
 	while (y < 4)
 	{
 		if (str[j] == '#' || str[j] == '.')
 		{
-			if (str[j] == '#')
-				tetris->piesa[y][x] = 65 + piece_nb;
-			else
-				tetris->piesa[y][x] = str[j];
+			tetris->piesa[y][x] = str[j];
 			x++;
 			j++;
 		}
@@ -41,9 +55,8 @@ t_etris		*ft_create_struct(int piece_nb, char *str)
 			j++;
 		}
 	}
-	ft_dimens(tetris);
+	fuck_the_normes(tetris, piece_nb, 0);
 	free(str);
-	tetris->nb = piece_nb;
 	return (tetris);
 }
 
@@ -60,7 +73,7 @@ t_etris		*take_20(char *str, int x, int piece_nb)
 		i++;
 	}
 	ft_movepiece(arr);
-	return (ft_create_struct(piece_nb, arr));
+	return (ft_create_struct(piece_nb, arr, 0));
 }
 
 t_etris		**ft_vector_struct(int nr_piese, char *str)
